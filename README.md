@@ -14,4 +14,4 @@ ID (integer/long) ,Imie, Nazwisko, Email(unique id), Haslo, Telefon numer, enabl
 
 # Product:
 
-ID (integer/long) ,Marka, Model, Kolor, Rozmiar, Kod_produktu, enabled, isNotLocked, isUsingMfa, CreatedAt
+ID (integer/long) ,Marka, Model, Kolor, Rozmiar, Kod_produktu, enabled, isNotLocked, CreatedAt
