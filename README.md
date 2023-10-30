@@ -10,11 +10,11 @@ Angular(NgRx - https://v8.ngrx.io/guide/store), Front Templates flowbite(https:/
 
 # User:
 
-ID (integer/long) ,Imie, Nazwisko, Email(unique id), Haslo, Telefon numer, enabled, isNotLocked, isUsingMfa, CreatedAt
+User_ID (integer/long) ,Imie, Nazwisko, Email(unique id), Haslo, Telefon numer, enabled, isNotLocked, isUsingMfa, CreatedAt
 
 # Product:
 
-ID (integer/long) ,Marka, Model, Kolor, Rozmiar, Kod_produktu, Ilość, Img_url, Promocja, isNotLocked, CreatedAt
+Product_ID (integer/long), Kategoria ,Marka, Model, Kolor, Rozmiar, Kod_produktu, Ilość, Img_url, Promocja, isNotLocked, CreatedAt
 
 
 # Logika
