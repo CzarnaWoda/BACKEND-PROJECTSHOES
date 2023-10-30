@@ -11,3 +11,7 @@ Angular(NgRx - https://v8.ngrx.io/guide/store), Front Templates flowbite(https:/
 # User:
 
 ID (integer/long) ,Imie, Nazwisko, Email(unique id), Haslo, Telefon numer, enabled, isNotLocked, isUsingMfa, CreatedAt
+
+# Product:
+
+ID (integer/long) ,Marka, Model, Kolor, Rozmiar, Kod_produktu, enabled, isNotLocked, isUsingMfa, CreatedAt
