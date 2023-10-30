@@ -14,4 +14,8 @@ ID (integer/long) ,Imie, Nazwisko, Email(unique id), Haslo, Telefon numer, enabl
 
 # Product:
 
-ID (integer/long) ,Marka, Model, Kolor, Rozmiar, Kod_produktu, Ilość, Img_url, Promocja, enabled, isNotLocked, CreatedAt
+ID (integer/long) ,Marka, Model, Kolor, Rozmiar, Kod_produktu, Ilość, Img_url, Promocja, isNotLocked, CreatedAt
+
+
+# Logika
+Rejestracja, Logowanie, Wylogowanie, 
