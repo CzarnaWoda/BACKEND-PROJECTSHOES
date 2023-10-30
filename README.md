@@ -18,4 +18,4 @@ ID (integer/long) ,Marka, Model, Kolor, Rozmiar, Kod_produktu, Ilość, Img_url,
 
 
 # Logika
-Rejestracja, Logowanie, Wylogowanie, 
+Wyswietlanie produktów na głownej stronie np 4 na banerze które są promowane (jakoś je oznaczyć), pod spodem cała lista marek które są dostępne i po wejściu w marke konkretne buty mają się wyswietlac, Rejestracja, Logowanie, Wylogowanie
