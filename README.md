@@ -3,7 +3,7 @@
 Podstawowe struktury, spring boot security
 
 # Ustalenia
-BackEnd
+# BackEnd
 PG, JPA, Data Structure - Records, Spring Security
-Front
+# Front
 Angular(NgRx - https://v8.ngrx.io/guide/store), Front Templates flowbite(https://flowbite.com), tailwindcss
