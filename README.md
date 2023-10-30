@@ -2,7 +2,7 @@
 
 Podstawowe struktury, spring boot security
 
-#Ustalenia
+# Ustalenia
 BackEnd
 PG, JPA, Data Structure - Records, Spring Security
 Front
