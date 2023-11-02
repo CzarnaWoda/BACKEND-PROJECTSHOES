@@ -12,8 +12,7 @@ import pl.projectshoes.user.requests.ShopUserRegisterRequest;
 import pl.projectshoes.user.service.ShopUserService;
 import pl.projectshoes.utils.HttpResponse;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import static java.time.LocalTime.*;
@@ -33,10 +32,10 @@ public class ShopUserController {
             final ShopUserDTO shopUserDTO = shopUserService.mapToShopUserDTO(email);
 
             return ResponseEntity.status(OK).body(HttpResponse.builder()
-                    .timeStamp(now().toString())
                     .status(OK)
                     .statusCode(OK.value())
                     .data(Map.of("user",shopUserDTO))
+                    .timeStamp(now().toString())
                     .build());
         }else{
             return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
