@@ -12,6 +12,7 @@ import pl.projectshoes.user.service.ShopUserService;
 import pl.projectshoes.utils.HttpResponse;
 
 import java.util.Map;
+import java.util.Optional;
 
 import static java.time.LocalTime.*;
 import static org.springframework.http.HttpStatus.*;
@@ -26,9 +27,8 @@ public class ShopUserController {
 
     @GetMapping("/{email}")
     public ResponseEntity<HttpResponse> getShopUserByEmail(@PathVariable String email){
-        if(shopUserService.isShopUserExist(email)){
-            final ShopUserDTO shopUserDTO = shopUserService.mapToShopUserDTO(email);
-
+        final Optional<ShopUserDTO> shopUserDTO = shopUserService.mapToShopUserDTO(email);
+        if(shopUserDTO.isPresent()){
             return ResponseEntity.status(OK).body(HttpResponse.builder()
                     .status(OK)
                     .statusCode(OK.value())

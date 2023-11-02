@@ -10,7 +10,6 @@ import pl.projectshoes.product.enums.Color;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-//optionale, size na klase
 @NoArgsConstructor
 @Getter
 @Setter
