@@ -1,4 +1,4 @@
-package pl.projectshoes.user;
+package pl.projectshoes.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
