@@ -7,22 +7,22 @@ import java.awt.*;
 import java.util.Date;
 
 public record Product(
-        Integer productId,
+        int productId,
         Category category,
         Brand brand,
         String model,
         Color color,
-        Double size,
-        Double price,
+        double size,
+        double price,
         String productCode,
-        Integer quantity,
+        int quantity,
         String description,
         String image,
-        Boolean isAvailable,
-        Boolean isBestseller,
-        Boolean isNew,
-        Boolean isRecommended,
-        Boolean isOnPromotion,
+        boolean isAvailable,
+        boolean isBestseller,
+        boolean isNew,
+        boolean isRecommended,
+        boolean isOnPromotion,
         Date createdAt
 ) {
 }
