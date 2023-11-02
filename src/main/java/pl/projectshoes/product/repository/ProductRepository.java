@@ -7,7 +7,7 @@ import pl.projectshoes.product.model.Product;
 import java.util.List;
 
 @Repository
-public interface ProductRepository {
+public interface ProductRepository extends JpaRepository<Product,Long> {
 
     List<Product> findAll();
 }
