@@ -42,7 +42,23 @@ public class ShopUserController {
         }
 
     }
-    //public ResponseEntity<HttpResponse> createShopUser(@RequestBody ShopUserRegisterRequest shopUserRegisterRequest){
+    @PostMapping("/register")
+    public ResponseEntity<HttpResponse> createShopUser(@RequestBody ShopUserRegisterRequest shopUserRegisterRequest){
+        if(shopUserService.isShopUserExist(shopUserRegisterRequest.email())){
+            return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
+                    .status(BAD_REQUEST)
+                    .statusCode(BAD_REQUEST.value())
+                    .developerMessage("User with that email already exist !")
+                    .data(Map.of("Request",shopUserRegisterRequest))
+                    .build());
+        }else{
+            shopUserService.createShopUser(shopUserRegisterRequest);
 
-    //}
+            return ResponseEntity.status(OK).body(HttpResponse.builder()
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .developerMessage("User created!")
+                    .build());
+        }
+    }
 }
