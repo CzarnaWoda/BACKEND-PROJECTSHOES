@@ -1,7 +1,7 @@
-package pl.projectshoes.products;
+package pl.projectshoes.product;
 
-import pl.projectshoes.products.enums.Brand;
-import pl.projectshoes.products.enums.Category;
+import pl.projectshoes.product.enums.Brand;
+import pl.projectshoes.product.enums.Category;
 
 import java.awt.*;
 import java.util.Date;

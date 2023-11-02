@@ -1,4 +1,4 @@
-package pl.projectshoes.products.enums;
+package pl.projectshoes.product.enums;
 
 public enum Brand {
     ADIDAS,
