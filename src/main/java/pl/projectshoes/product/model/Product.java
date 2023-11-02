@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.projectshoes.product.enums.Brand;
 import pl.projectshoes.product.enums.Category;
+import pl.projectshoes.product.enums.Color;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+//optionale, size na klase
 @NoArgsConstructor
 @Getter
 @Setter
@@ -25,11 +25,11 @@ public class Product implements Serializable {
     private Category category;
     private Brand brand;
     private String model;
-    private Color color;
-    private double size;
+    private pl.projectshoes.product.enums.Color color;
+    private Size size;
     private double price;
     private String productCode;
-    private long quantity;
+    private int quantity;
     private String description;
     private String image;
     private boolean isAvailable;
@@ -39,7 +39,7 @@ public class Product implements Serializable {
     private boolean isOnPromotion;
     private LocalDateTime createdAt;
 
-    public Product(Category category, Brand brand, String model, Color color, double size, double price, String productCode, long quantity, String description, String image, boolean isAvailable, boolean isBestseller, boolean isNew, boolean isRecommended, boolean isOnPromotion, LocalDateTime createdAt) {
+    public Product(Category category, Brand brand, String model, Color color, Size size, double price, String productCode, int quantity, String description, String image, boolean isAvailable, boolean isBestseller, boolean isNew, boolean isRecommended, boolean isOnPromotion, LocalDateTime createdAt) {
         this.category = category;
         this.brand = brand;
         this.model = model;

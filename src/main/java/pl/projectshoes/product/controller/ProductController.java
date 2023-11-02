@@ -1,19 +1,15 @@
 package pl.projectshoes.product.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.projectshoes.product.dto.ProductDTO;
-import pl.projectshoes.product.repository.ProductRepository;
 import pl.projectshoes.product.service.ProductService;
 import pl.projectshoes.utils.HttpResponse;
 
-import javax.security.auth.callback.ConfirmationCallback;
 import java.util.Map;
 import java.util.Optional;
 

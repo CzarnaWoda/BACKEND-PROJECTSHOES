@@ -7,11 +7,9 @@ import pl.projectshoes.product.dto.ProductDTOMapper;
 import pl.projectshoes.product.model.Product;
 import pl.projectshoes.product.repository.ProductRepository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Optional.of;
 
 @Service
 @RequiredArgsConstructor

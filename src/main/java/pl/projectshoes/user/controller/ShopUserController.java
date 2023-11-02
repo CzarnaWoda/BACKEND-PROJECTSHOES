@@ -3,7 +3,6 @@ package pl.projectshoes.user.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,6 @@ import pl.projectshoes.user.requests.ShopUserRegisterRequest;
 import pl.projectshoes.user.service.ShopUserService;
 import pl.projectshoes.utils.HttpResponse;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import static java.time.LocalTime.*;
