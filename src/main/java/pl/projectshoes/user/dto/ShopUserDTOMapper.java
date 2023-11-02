@@ -6,10 +6,9 @@ import pl.projectshoes.user.model.ShopUser;
 
 @Component
 public class ShopUserDTOMapper {
-    public ShopUserDTO fromUser(ShopUser user){
+    public ShopUserDTO fromShopUser(ShopUser user){
         final ShopUserDTO shopUserDTO = new ShopUserDTO();
         BeanUtils.copyProperties(user, shopUserDTO);
         return shopUserDTO;
     }
-
 }

@@ -13,7 +13,6 @@ import pl.projectshoes.product.enums.Color;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-//optionale, size na klase
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,7 +25,8 @@ public class Product implements Serializable {
     private Brand brand;
     private String model;
     private pl.projectshoes.product.enums.Color color;
-    private Size size;
+//    private Size size;
+    private double size;
     private double price;
     private String productCode;
     private int quantity;
@@ -39,7 +39,7 @@ public class Product implements Serializable {
     private boolean isOnPromotion;
     private LocalDateTime createdAt;
 
-    public Product(Category category, Brand brand, String model, Color color, Size size, double price, String productCode, int quantity, String description, String image, boolean isAvailable, boolean isBestseller, boolean isNew, boolean isRecommended, boolean isOnPromotion, LocalDateTime createdAt) {
+    public Product(Category category, Brand brand, String model, Color color, double size, double price, String productCode, int quantity, String description, String image, boolean isAvailable, boolean isBestseller, boolean isNew, boolean isRecommended, boolean isOnPromotion, LocalDateTime createdAt) {
         this.category = category;
         this.brand = brand;
         this.model = model;

@@ -11,6 +11,7 @@ import pl.projectshoes.user.requests.ShopUserRegisterRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,14 +26,14 @@ public class ShopUserService {
         return shopUserRepository.existsByEmail(email);
     }
 
-    public ShopUser getShopUserByEmail(String email){
+    public Optional<ShopUser> getShopUserByEmail(String email){
         return shopUserRepository.getShopUserByEmail(email);
     }
 
-    public ShopUserDTO mapToShopUserDTO(String email){
-        return shopUserDTOMapper.fromUser(getShopUserByEmail(email));
+    public Optional<ShopUserDTO> mapToShopUserDTO(String email) {
+        final Optional<ShopUser> shopUser = getShopUserByEmail(email);
+        return shopUser.map(shopUserDTOMapper::fromShopUser);
     }
-
     public void createShopUser(ShopUserRegisterRequest shopUserRegisterRequest){
         shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now()));
     }
