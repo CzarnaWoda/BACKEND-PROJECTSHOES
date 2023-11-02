@@ -1,5 +1,12 @@
-package pl.projectshoes.product;
+package pl.projectshoes.product.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.projectshoes.product.enums.Brand;
 import pl.projectshoes.product.enums.Category;
 
@@ -7,7 +14,9 @@ import java.awt.*;
 import java.util.Date;
 
 public record Product(
-        int productId,
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        long productId,
         Category category,
         Brand brand,
         String model,
@@ -15,7 +24,7 @@ public record Product(
         double size,
         double price,
         String productCode,
-        int quantity,
+        long quantity,
         String description,
         String image,
         boolean isAvailable,
