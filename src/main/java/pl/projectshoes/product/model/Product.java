@@ -13,25 +13,47 @@ import pl.projectshoes.product.enums.Category;
 import java.awt.*;
 import java.util.Date;
 
-public record Product(
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        long productId,
-        Category category,
-        Brand brand,
-        String model,
-        Color color,
-        double size,
-        double price,
-        String productCode,
-        long quantity,
-        String description,
-        String image,
-        boolean isAvailable,
-        boolean isBestseller,
-        boolean isNew,
-        boolean isRecommended,
-        boolean isOnPromotion,
-        Date createdAt
-) {
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long productId;
+    private Category category;
+    private Brand brand;
+    private String model;
+    private Color color;
+    private double size;
+    private double price;
+    private String productCode;
+    private long quantity;
+    private String description;
+    private String image;
+    private boolean isAvailable;
+    private boolean isBestseller;
+    private boolean isNew;
+    private boolean isRecommended;
+    private boolean isOnPromotion;
+    private Date createdAt;
+
+    public Product(Category category, Brand brand, String model, Color color, double size, double price, String productCode, long quantity, String description, String image, boolean isAvailable, boolean isBestseller, boolean isNew, boolean isRecommended, boolean isOnPromotion, Date createdAt) {
+        this.category = category;
+        this.brand = brand;
+        this.model = model;
+        this.color = color;
+        this.size = size;
+        this.price = price;
+        this.productCode = productCode;
+        this.quantity = quantity;
+        this.description = description;
+        this.image = image;
+        this.isAvailable = isAvailable;
+        this.isBestseller = isBestseller;
+        this.isNew = isNew;
+        this.isRecommended = isRecommended;
+        this.isOnPromotion = isOnPromotion;
+        this.createdAt = createdAt;
+    }
 }
