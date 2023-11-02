@@ -20,7 +20,7 @@ import java.util.Date;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long productId;
+    private long id;
     private Category category;
     private Brand brand;
     private String model;
