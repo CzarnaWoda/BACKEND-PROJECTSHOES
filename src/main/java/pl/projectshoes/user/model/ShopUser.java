@@ -1,6 +1,6 @@
 package pl.projectshoes.user.model;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +11,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+@Entity
+public class ShopUser {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String firstName;
     private String lastName;
@@ -25,8 +28,7 @@ public class User {
     private boolean isUsingMfa;
     private LocalDateTime createdAt;
 
-    public User(int id, String firstName, String lastName, String email, String password, String phone, boolean enabled, boolean isNotLocked, boolean isUsingMfa, LocalDateTime createdAt) {
-        this.id = id;
+    public ShopUser(String firstName, String lastName, String email, String password, String phone, boolean enabled, boolean isNotLocked, boolean isUsingMfa, LocalDateTime createdAt) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
