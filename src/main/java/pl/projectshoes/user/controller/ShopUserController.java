@@ -12,8 +12,11 @@ import pl.projectshoes.user.requests.ShopUserRegisterRequest;
 import pl.projectshoes.user.service.ShopUserService;
 import pl.projectshoes.utils.HttpResponse;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Map;
 
+import static java.time.LocalTime.*;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -30,12 +33,14 @@ public class ShopUserController {
             final ShopUserDTO shopUserDTO = shopUserService.mapToShopUserDTO(email);
 
             return ResponseEntity.status(OK).body(HttpResponse.builder()
+                    .timeStamp(now().toString())
                     .status(OK)
                     .statusCode(OK.value())
                     .data(Map.of("user",shopUserDTO))
                     .build());
         }else{
             return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
+                    .timeStamp(now().toString())
                     .status(NOT_FOUND)
                     .statusCode(NOT_FOUND.value())
                     .developerMessage("User was not found in repository !")
@@ -48,6 +53,7 @@ public class ShopUserController {
     public ResponseEntity<HttpResponse> createShopUser(@RequestBody @Valid ShopUserRegisterRequest shopUserRegisterRequest, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
+                    .timeStamp(now().toString())
                     .status(BAD_REQUEST)
                     .statusCode(BAD_REQUEST.value())
                     .reason(bindingResult.getAllErrors().get(0).getDefaultMessage())
@@ -55,6 +61,7 @@ public class ShopUserController {
         }
         if(shopUserService.isShopUserExist(shopUserRegisterRequest.email())){
             return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
+                    .timeStamp(now().toString())
                     .status(BAD_REQUEST)
                     .statusCode(BAD_REQUEST.value())
                     .developerMessage("User with that email already exist !")
@@ -63,6 +70,7 @@ public class ShopUserController {
         }else{
             shopUserService.createShopUser(shopUserRegisterRequest);
             return ResponseEntity.status(OK).body(HttpResponse.builder()
+                    .timeStamp(now().toString())
                     .status(OK)
                     .statusCode(OK.value())
                     .developerMessage("User created!")
