@@ -1,12 +1,48 @@
 package pl.projectshoes.user.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import pl.projectshoes.user.dto.ShopUserDTO;
+import pl.projectshoes.user.requests.ShopUserRegisterRequest;
+import pl.projectshoes.user.service.ShopUserService;
+import pl.projectshoes.utils.HttpResponse;
+
+import java.util.Map;
+
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/user")
 public class ShopUserController {
 
+    private final ShopUserService shopUserService;
 
+
+    @GetMapping("/{email}")
+    public ResponseEntity<HttpResponse> getShopUserByEmail(@PathVariable String email){
+        if(shopUserService.isShopUserExist(email)){
+            final ShopUserDTO shopUserDTO = shopUserService.mapToShopUserDTO(email);
+
+            return ResponseEntity.status(OK).body(HttpResponse.builder()
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .data(Map.of("user",shopUserDTO))
+                    .build());
+        }else{
+            return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
+                    .status(NOT_FOUND)
+                    .statusCode(NOT_FOUND.value())
+                    .developerMessage("User was not found in repository !")
+                    .data(Map.of("email",email))
+                    .build());
+        }
+
+    }
+    //public ResponseEntity<HttpResponse> createShopUser(@RequestBody ShopUserRegisterRequest shopUserRegisterRequest){
+
+    //}
 }
