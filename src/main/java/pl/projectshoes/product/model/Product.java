@@ -1,4 +1,4 @@
-package pl.projectshoes.product;
+package pl.projectshoes.product.model;
 
 import pl.projectshoes.product.enums.Brand;
 import pl.projectshoes.product.enums.Category;
