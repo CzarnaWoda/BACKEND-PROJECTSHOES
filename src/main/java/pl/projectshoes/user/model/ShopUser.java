@@ -6,13 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-public class ShopUser {
+public class ShopUser implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

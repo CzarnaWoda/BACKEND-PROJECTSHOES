@@ -1,8 +1,13 @@
 package pl.projectshoes.user.dto;
 
+import lombok.Data;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ShopUserDTO {
+@Data
+public class ShopUserDTO implements Serializable {
+
     private String firstName;
     private String lastName;
     private String email;

@@ -1,9 +1,11 @@
 package pl.projectshoes.user.controller;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.projectshoes.user.dto.ShopUserDTO;
 import pl.projectshoes.user.requests.ShopUserRegisterRequest;
@@ -43,7 +45,14 @@ public class ShopUserController {
 
     }
     @PostMapping("/register")
-    public ResponseEntity<HttpResponse> createShopUser(@RequestBody ShopUserRegisterRequest shopUserRegisterRequest){
+    public ResponseEntity<HttpResponse> createShopUser(@RequestBody @Valid ShopUserRegisterRequest shopUserRegisterRequest, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
+                    .status(BAD_REQUEST)
+                    .statusCode(BAD_REQUEST.value())
+                    .reason(bindingResult.getAllErrors().get(0).getDefaultMessage())
+                    .build());
+        }
         if(shopUserService.isShopUserExist(shopUserRegisterRequest.email())){
             return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
                     .status(BAD_REQUEST)
@@ -53,7 +62,6 @@ public class ShopUserController {
                     .build());
         }else{
             shopUserService.createShopUser(shopUserRegisterRequest);
-
             return ResponseEntity.status(OK).body(HttpResponse.builder()
                     .status(OK)
                     .statusCode(OK.value())
