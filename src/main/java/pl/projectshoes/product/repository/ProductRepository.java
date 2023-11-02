@@ -5,11 +5,12 @@ import org.springframework.stereotype.Repository;
 import pl.projectshoes.product.model.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
     List<Product> findAll();
 
-    Product getProductById(long id);
+    Optional<Product> getProductById(long id);
 }

@@ -15,6 +15,7 @@ import pl.projectshoes.utils.HttpResponse;
 
 import javax.security.auth.callback.ConfirmationCallback;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -25,24 +26,23 @@ public class ProductController {
     //get, post, put, delete
     private final ProductService productService;
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<HttpResponse> getProductById(@PathVariable long id) {
-        if (productService.isProductExist(id)) {
-            final ProductDTO productDTO = productService.mapToProductDTO(id);
-
-            return ResponseEntity.status(ConfirmationCallback.OK).body(HttpResponse.builder()
-                    .status(HttpStatus.OK)
-                    .statusCode(HttpStatus.OK.value())
-                    .data(Map.of("product", productDTO))
-                    .build());
-        } else {
-            return ResponseEntity.ok(HttpResponse.builder()
-                    .status(NOT_FOUND)
-                    .statusCode(NOT_FOUND.value())
-                    .message("Product was not found in repository !")
-                    .data(Map.of("id",id))
-                    .build());
-        }
+            final Optional<ProductDTO> productDTO = productService.mapToProductDTO(id);
+            if(productDTO.isPresent()){
+                return ResponseEntity.status(OK).body(HttpResponse.builder()
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .data(Map.of("product", productDTO))
+                        .build());
+            }else{
+                return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
+                        .status(NOT_FOUND)
+                        .statusCode(NOT_FOUND.value())
+                        .message("Product was not found in repository !")
+                        .data(Map.of("id",id))
+                        .build());
+            }
     }
 
 }

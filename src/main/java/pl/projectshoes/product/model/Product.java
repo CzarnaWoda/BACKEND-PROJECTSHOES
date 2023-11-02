@@ -11,13 +11,14 @@ import pl.projectshoes.product.enums.Brand;
 import pl.projectshoes.product.enums.Category;
 
 import java.awt.*;
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -36,9 +37,9 @@ public class Product {
     private boolean isNew;
     private boolean isRecommended;
     private boolean isOnPromotion;
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
-    public Product(Category category, Brand brand, String model, Color color, double size, double price, String productCode, long quantity, String description, String image, boolean isAvailable, boolean isBestseller, boolean isNew, boolean isRecommended, boolean isOnPromotion, Date createdAt) {
+    public Product(Category category, Brand brand, String model, Color color, double size, double price, String productCode, long quantity, String description, String image, boolean isAvailable, boolean isBestseller, boolean isNew, boolean isRecommended, boolean isOnPromotion, LocalDateTime createdAt) {
         this.category = category;
         this.brand = brand;
         this.model = model;
