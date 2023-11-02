@@ -18,6 +18,7 @@ public class ShopUserService {
     private final ShopUserDTOMapper shopUserDTOMapper;
 
 
+
     public boolean isShopUserExist(String email){
         return shopUserRepository.existsByEmail(email);
     }
