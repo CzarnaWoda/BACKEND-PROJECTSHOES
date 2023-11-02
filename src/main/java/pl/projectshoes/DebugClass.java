@@ -30,7 +30,7 @@ public class DebugClass implements CommandLineRunner {
 
 
         if(productRepository.findAll().isEmpty()){
-            productRepository.save(new Product(Category.KIDS, Brand.ADIDAS,"XP", Color.BLACK,new Size(35.0, Standard.EUR),2,"xd",1,"xddd","img.url",true,true,true,true,true,LocalDateTime.now()));
+            productRepository.save(new Product(Category.KIDS, Brand.ADIDAS,"XP", Color.BLACK,new Size(30.5,Standard.CM),2,"xd",1,"xddd","img.url",true,true,true,true,true,LocalDateTime.now()));
         }
         if(!shopUserRepository.existsByEmail("elo@elo.com")) {
 

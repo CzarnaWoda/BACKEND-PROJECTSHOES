@@ -1,9 +1,6 @@
 package pl.projectshoes.product.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +23,7 @@ public class Product implements Serializable {
     private Brand brand;
     private String model;
     private pl.projectshoes.product.enums.Color color;
+    @Embedded
     private Size size;
     private double price;
     private String productCode;
