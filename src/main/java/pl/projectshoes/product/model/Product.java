@@ -16,7 +16,7 @@ import java.util.Date;
 public record Product(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        int productId,
+        long productId,
         Category category,
         Brand brand,
         String model,
@@ -24,7 +24,7 @@ public record Product(
         double size,
         double price,
         String productCode,
-        int quantity,
+        long quantity,
         String description,
         String image,
         boolean isAvailable,
