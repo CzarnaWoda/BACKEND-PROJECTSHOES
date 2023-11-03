@@ -6,7 +6,9 @@ import pl.projectshoes.product.dto.ProductDTO;
 import pl.projectshoes.product.dto.ProductDTOMapper;
 import pl.projectshoes.product.model.Product;
 import pl.projectshoes.product.repository.ProductRepository;
+import pl.projectshoes.product.requests.ProductAddRequest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +23,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public boolean isProductExist(long id) {
-        return productRepository.existsById(id);
-    }
+//    public boolean isProductExist(long id) {
+//        return productRepository.existsById(id);
+//    }
 
     public Optional<Product> getProductById(long id) {
         return productRepository.getProductById(id);
@@ -34,4 +36,11 @@ public class ProductService {
         return product.map(productDTOMapper::fromProduct);
     }
 
+    public void addProduct(ProductAddRequest productAddRequest) {
+        productRepository.save(new Product(productAddRequest.category(),productAddRequest.brand(),productAddRequest.model(),productAddRequest.shoeColor(),productAddRequest.size(),productAddRequest.price(),productAddRequest.productCode(),productAddRequest.quantity(),productAddRequest.description(),productAddRequest.image(),productAddRequest.isAvailable(), false, true, true, productAddRequest.isOnPromotion(), LocalDateTime.now()));
+    }
+
+    public boolean isProductExist(String s) {
+        return productRepository.existsByProductCode(s);
+    }
 }

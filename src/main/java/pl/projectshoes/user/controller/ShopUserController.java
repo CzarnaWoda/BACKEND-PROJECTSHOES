@@ -66,10 +66,10 @@ public class ShopUserController {
                     .build());
         }else{
             shopUserService.createShopUser(shopUserRegisterRequest);
-            return ResponseEntity.status(OK).body(HttpResponse.builder()
+            return ResponseEntity.status(CREATED).body(HttpResponse.builder()
                     .timeStamp(now().toString())
-                    .status(OK)
-                    .statusCode(OK.value())
+                    .status(CREATED)
+                    .statusCode(CREATED.value())
                     .developerMessage("User created!")
                     .build());
         }
