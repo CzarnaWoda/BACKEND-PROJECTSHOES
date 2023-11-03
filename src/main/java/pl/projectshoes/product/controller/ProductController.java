@@ -25,20 +25,20 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<HttpResponse> getProductById(@PathVariable long id) {
             final Optional<ProductDTO> productDTO = productService.mapToProductDTO(id);
-            if(productDTO.isPresent()){
-                return ResponseEntity.status(OK).body(HttpResponse.builder()
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .data(Map.of("product", productDTO))
-                        .build());
-            }else{
-                return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
-                        .status(NOT_FOUND)
-                        .statusCode(NOT_FOUND.value())
-                        .message("Product was not found in repository !")
-                        .data(Map.of("id",id))
-                        .build());
-            }
+                if(productDTO.isPresent()){
+                    return ResponseEntity.status(OK).body(HttpResponse.builder()
+                            .status(OK)
+                            .statusCode(OK.value())
+                            .data(Map.of("product", productDTO))
+                            .build());
+                }else{
+                    return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
+                            .status(NOT_FOUND)
+                            .statusCode(NOT_FOUND.value())
+                            .message("Product was not found in repository !")
+                            .data(Map.of("id",id))
+                            .build());
+                }
     }
 
 }

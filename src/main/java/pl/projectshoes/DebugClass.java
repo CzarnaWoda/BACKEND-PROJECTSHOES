@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.projectshoes.product.enums.Brand;
 import pl.projectshoes.product.enums.Category;
-import pl.projectshoes.product.enums.Color;
+import pl.projectshoes.product.enums.ShoeColor;
 import pl.projectshoes.product.enums.Standard;
 import pl.projectshoes.product.model.Product;
 import pl.projectshoes.product.model.Size;
@@ -13,7 +13,6 @@ import pl.projectshoes.product.repository.ProductRepository;
 import pl.projectshoes.user.model.ShopUser;
 import pl.projectshoes.user.repository.ShopUserRepository;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -30,7 +29,7 @@ public class DebugClass implements CommandLineRunner {
 
 
         if(productRepository.findAll().isEmpty()){
-            productRepository.save(new Product(Category.KIDS, Brand.ADIDAS,"XP", Color.BLACK,new Size(30.5,Standard.CM),2,"xd",1,"xddd","img.url",true,true,true,true,true,LocalDateTime.now()));
+            productRepository.save(new Product(Category.KIDS, Brand.ADIDAS,"XP", ShoeColor.WHITE, new Size(30.5,Standard.CM),2,"xd",1,"xddd","img.url",true,true,true,true,true,LocalDateTime.now()));
         }
         if(!shopUserRepository.existsByEmail("elo@elo.com")) {
 

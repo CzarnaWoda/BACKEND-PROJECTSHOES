@@ -1,6 +1,6 @@
 package pl.projectshoes.product.enums;
 
-public enum Color {
+public enum ShoeColor {
     BLACK,
     WHITE,
     RED,
