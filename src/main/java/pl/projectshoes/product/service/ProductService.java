@@ -43,4 +43,8 @@ public class ProductService {
     public boolean isProductExist(String s) {
         return productRepository.existsByProductCode(s);
     }
+
+    public void deleteProduct(long id) {
+        productRepository.deleteById(id);
+    }
 }

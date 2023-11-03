@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.projectshoes.product.dto.ProductDTO;
+import pl.projectshoes.product.enums.ShoeColor;
 import pl.projectshoes.product.requests.ProductAddRequest;
 import pl.projectshoes.product.service.ProductService;
 import pl.projectshoes.utils.HttpResponse;
@@ -20,6 +21,15 @@ import static org.springframework.http.HttpStatus.*;
 public class ProductController {
     //get, post, put, delete
     private final ProductService productService;
+
+    @GetMapping("/all")
+    public ResponseEntity<HttpResponse> getAllProducts(){
+        return ResponseEntity.status(OK).body(HttpResponse.builder()
+                .status(OK)
+                .statusCode(OK.value())
+                .data(Map.of("products", productService.getAllProducts()))
+                .build());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<HttpResponse> getProductById(@PathVariable long id) {
@@ -62,4 +72,24 @@ public class ProductController {
                     .build());
         }
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpResponse> deleteProduct(@PathVariable long id){
+        if (productService.getProductById(id).isPresent()){
+            productService.deleteProduct(id);
+            return ResponseEntity.status(OK).body(HttpResponse.builder()
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .developerMessage("Product was deleted from repository !")
+                    .build());
+        } else {
+            return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
+                    .status(NOT_FOUND)
+                    .statusCode(NOT_FOUND.value())
+                    .message("Product was not found in repository !")
+                    .data(Map.of("id",id))
+                    .build());
+        }
+    }
+
 }
