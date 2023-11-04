@@ -18,7 +18,6 @@ public class ProductDTO implements Serializable {
     private Brand brand;
     private String model;
     private ShoeColor shoeColor;
-    @Embedded
     private Size size;
     private double price;
     private String productCode;
