@@ -12,6 +12,7 @@ import pl.projectshoes.user.requests.ShopUserRegisterRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +36,7 @@ public class ShopUserService {
         return shopUser.map(shopUserDTOMapper::fromShopUser);
     }
     public void createShopUser(ShopUserRegisterRequest shopUserRegisterRequest){
-        shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now()));
+        shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now(), Set.of()));
     }
 
     public List<ShopUser> getAllUsers(){
