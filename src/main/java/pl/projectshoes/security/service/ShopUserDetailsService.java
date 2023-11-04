@@ -12,7 +12,9 @@ import pl.projectshoes.user.model.ShopUser;
 import pl.projectshoes.user.model.ShopUserRole;
 import pl.projectshoes.user.service.ShopUserService;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
