@@ -16,7 +16,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class ShopUserServiceImpl implements ShopUserService {
+class ShopUserServiceImpl implements ShopUserService {
 
     private final ShopUserRepository shopUserRepository;
 

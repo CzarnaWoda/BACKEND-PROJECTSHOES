@@ -8,7 +8,7 @@ import pl.projectshoes.user.repository.UserRoleRepository;
 
 @Service
 @RequiredArgsConstructor
-public class UserRoleService {
+public class ShopUserRoleService {
 
     private final UserRoleRepository userRoleRepository;
 
