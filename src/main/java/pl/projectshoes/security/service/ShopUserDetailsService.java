@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.projectshoes.user.model.ShopUser;
 import pl.projectshoes.user.model.ShopUserRole;
-import pl.projectshoes.user.service.ShopUserService;
+import pl.projectshoes.user.service.ShopUserServiceImpl;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class ShopUserDetailsService implements UserDetailsService {
 
-    private final ShopUserService shopUserService;
+    private final ShopUserServiceImpl shopUserService;
 
 
     @Override

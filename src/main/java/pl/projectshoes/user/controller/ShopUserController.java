@@ -15,7 +15,7 @@ import pl.projectshoes.user.dto.ShopUserDTO;
 import pl.projectshoes.user.dto.ShopUserDTOMapper;
 import pl.projectshoes.user.requests.ShopUserLoginRequest;
 import pl.projectshoes.user.requests.ShopUserRegisterRequest;
-import pl.projectshoes.user.service.ShopUserService;
+import pl.projectshoes.user.service.ShopUserServiceImpl;
 import pl.projectshoes.utils.HttpResponse;
 
 import java.util.Map;
@@ -29,7 +29,7 @@ import static org.springframework.http.HttpStatus.*;
 @RequestMapping("/api/v1/user")
 public class ShopUserController {
 
-    private final ShopUserService shopUserService;
+    private final ShopUserServiceImpl shopUserService;
     private final AccountAuthenticationProvider authenticationProvider;
     private final TokenService tokenService;
     private final ShopUserDTOMapper shopUserDTOMapper;
