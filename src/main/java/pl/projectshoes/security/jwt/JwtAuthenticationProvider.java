@@ -13,7 +13,7 @@ import pl.projectshoes.security.service.ShopUserDetailsService;
 
 @Component
 @RequiredArgsConstructor
-public class JwtAuthenticationProvider implements AuthenticationProvider {
+class JwtAuthenticationProvider implements AuthenticationProvider {
 
     private final ShopUserDetailsService shopUserDetailsService;
     private final PasswordEncoder passwordEncoder;

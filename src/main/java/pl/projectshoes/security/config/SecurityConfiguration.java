@@ -43,7 +43,7 @@ class SecurityConfiguration {
     private final JwtDecoder jwtDecoder;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception{
 
         AuthenticationManagerBuilder authenticationManagerBuilder = security.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.authenticationProvider(authenticationProvider);
@@ -70,7 +70,7 @@ class SecurityConfiguration {
         return security.build();
     }
     @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtAuthenticationConverter jwtAuthenticationConverter() {
         final JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         grantedAuthoritiesConverter.setAuthoritiesClaimName("roles"); // defaults to "scope" or "scp"
         grantedAuthoritiesConverter.setAuthorityPrefix(""); // defaults to "SCOPE_"
@@ -81,7 +81,7 @@ class SecurityConfiguration {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of("http://localhost:4200")); // Dodaj swoje domeny
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
