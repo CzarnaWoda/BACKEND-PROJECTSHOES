@@ -2,9 +2,9 @@ package pl.projectshoes.user.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pl.projectshoes.user.dto.ShopUserDTO;
-import pl.projectshoes.user.dto.ShopUserDTOMapper;
 import pl.projectshoes.user.model.ShopUser;
 import pl.projectshoes.user.repository.ShopUserRepository;
 import pl.projectshoes.user.requests.ShopUserRegisterRequest;
@@ -19,26 +19,24 @@ import java.util.Set;
 public class ShopUserService {
 
     private final ShopUserRepository shopUserRepository;
-    private final ShopUserDTOMapper shopUserDTOMapper;
 
 
 
+    @Cacheable(cacheNames = "shopUserByEmail", key = "#email")
     public boolean isShopUserExist(String email){
         return shopUserRepository.existsByEmail(email);
     }
 
+    @Cacheable(cacheNames = "shopUserByEmail", key = "#email")
     public Optional<ShopUser> getShopUserByEmail(String email){
         return shopUserRepository.getShopUserByEmail(email);
     }
-
-    public Optional<ShopUserDTO> mapToShopUserDTO(String email) {
-        final Optional<ShopUser> shopUser = getShopUserByEmail(email);
-        return shopUser.map(shopUserDTOMapper::fromShopUser);
-    }
+    @CachePut(cacheNames = "shopUserByEmail",key = "#shopUserRegisterRequest.email()")
     public void createShopUser(ShopUserRegisterRequest shopUserRegisterRequest){
         shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now(), Set.of()));
     }
 
+    @Cacheable(cacheNames = "shopUsers")
     public List<ShopUser> getAllUsers(){
         return shopUserRepository.findAll();
     }

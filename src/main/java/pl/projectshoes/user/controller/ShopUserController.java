@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.projectshoes.security.jwt.TokenService;
 import pl.projectshoes.security.provider.AccountAuthenticationProvider;
 import pl.projectshoes.user.dto.ShopUserDTO;
+import pl.projectshoes.user.dto.ShopUserDTOMapper;
 import pl.projectshoes.user.requests.ShopUserLoginRequest;
 import pl.projectshoes.user.requests.ShopUserRegisterRequest;
 import pl.projectshoes.user.service.ShopUserService;
@@ -31,11 +32,12 @@ public class ShopUserController {
     private final ShopUserService shopUserService;
     private final AccountAuthenticationProvider authenticationProvider;
     private final TokenService tokenService;
+    private final ShopUserDTOMapper shopUserDTOMapper;
 
 
     @GetMapping("/{email}")
     public ResponseEntity<HttpResponse> getShopUserByEmail(@PathVariable String email){
-        final Optional<ShopUserDTO> shopUserDTO = shopUserService.mapToShopUserDTO(email);
+        final Optional<ShopUserDTO> shopUserDTO = shopUserService.getShopUserByEmail(email).map(shopUserDTOMapper::fromShopUser);
         if(shopUserDTO.isPresent()){
             return ResponseEntity.status(OK).body(HttpResponse.builder()
                     .status(OK)
