@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.projectshoes.product.enums.Standard;
 
-import java.io.Serializable;
-
 
 @Embeddable
 @NoArgsConstructor

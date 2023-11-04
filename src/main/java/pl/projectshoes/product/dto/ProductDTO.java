@@ -1,13 +1,9 @@
 package pl.projectshoes.product.dto;
 
-import jakarta.persistence.Embedded;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import pl.projectshoes.product.enums.Brand;
 import pl.projectshoes.product.enums.Category;
 import pl.projectshoes.product.enums.ShoeColor;
-import pl.projectshoes.product.enums.Standard;
 import pl.projectshoes.product.model.Size;
 
 import java.io.Serializable;

@@ -14,7 +14,7 @@ import pl.projectshoes.utils.HttpResponse;
 import java.util.Map;
 import java.util.Optional;
 
-import static java.time.LocalTime.*;
+import static java.time.LocalTime.now;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController

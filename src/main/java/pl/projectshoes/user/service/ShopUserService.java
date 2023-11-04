@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.projectshoes.user.dto.ShopUserDTO;
 import pl.projectshoes.user.dto.ShopUserDTOMapper;
-import pl.projectshoes.user.repository.ShopUserRepository;
 import pl.projectshoes.user.model.ShopUser;
+import pl.projectshoes.user.repository.ShopUserRepository;
 import pl.projectshoes.user.requests.ShopUserRegisterRequest;
 
 import java.time.LocalDateTime;

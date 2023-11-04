@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.projectshoes.product.dto.ProductDTO;
-import pl.projectshoes.product.enums.ShoeColor;
 import pl.projectshoes.product.requests.ProductAddRequest;
 import pl.projectshoes.product.service.ProductService;
 import pl.projectshoes.utils.HttpResponse;
