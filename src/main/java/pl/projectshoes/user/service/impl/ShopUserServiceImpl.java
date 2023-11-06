@@ -33,8 +33,10 @@ class ShopUserServiceImpl implements ShopUserService {
     public ShopUser createShopUser(ShopUserRegisterRequest shopUserRegisterRequest, ShopUserRole defaultRole){
         return shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now(), Set.of(defaultRole)));
     }
+
+    //Only for test {Jeżeli ktoś doda użytkownika/ zarejestruje sie to powinno dzięki result.size pobrać na nowo wszystkich użytkowników tylko pytanie czy jak bedzie np 10k użytkowników to czy jak bedzie 10k i 1 to nie bedzie za dużo pamięci brało dla cache więc możliwe że trzeba to zrobić coś w stylu kasowania co 2-3 minuty żeby to faktycznie miało sens optymalizacyjny}
     @Override
-    @Cacheable(cacheNames = "shopUsers")
+    @Cacheable(cacheNames = "shopUsers", key = "#result.size()")
     public List<ShopUser> getAllShopUsers(){
         return shopUserRepository.findAll();
     }

@@ -6,7 +6,7 @@ import pl.projectshoes.user.model.ShopUserRole;
 
 
 @Repository
-public interface UserRoleRepository extends JpaRepository<ShopUserRole,Long> {
+public interface ShopUserRoleRepository extends JpaRepository<ShopUserRole,Long> {
 
 
     ShopUserRole getByName(String userRoleName);
