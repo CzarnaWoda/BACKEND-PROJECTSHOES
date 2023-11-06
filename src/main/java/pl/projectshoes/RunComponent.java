@@ -14,10 +14,10 @@ class RunComponent implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        if(!shopUserRoleService.isUserRoleExist("ROLE_USER")){
+        if(!shopUserRoleService.isShopUserRoleExist("ROLE_USER")){
             shopUserRoleService.createShopUserRole("ROLE_USER","READ:USER,WRITE:USER");
         }
-        if(!shopUserRoleService.isUserRoleExist("ROLE_ADMIN")){
+        if(!shopUserRoleService.isShopUserRoleExist("ROLE_ADMIN")){
             shopUserRoleService.createShopUserRole("ROLE_ADMIN","READ:ADMIN,WRITE:ADMIN");
         }
 

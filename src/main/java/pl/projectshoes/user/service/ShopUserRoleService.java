@@ -4,9 +4,9 @@ import pl.projectshoes.user.model.ShopUserRole;
 
 public interface ShopUserRoleService {
 
-    ShopUserRole getUserRoleByName(String name);
+    ShopUserRole getShopUserRoleByName(String name);
 
-    boolean isUserRoleExist(String name);
+    boolean isShopUserRoleExist(String name);
 
     ShopUserRole createShopUserRole(String name, String permissions);
 

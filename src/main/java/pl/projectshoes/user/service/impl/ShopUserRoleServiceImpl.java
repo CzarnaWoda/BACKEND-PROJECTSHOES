@@ -17,13 +17,13 @@ class ShopUserRoleServiceImpl implements ShopUserRoleService {
 
     @Override
     @Cacheable(cacheNames = "shopUserRoleByName", key = "#name")
-    public ShopUserRole getUserRoleByName(String name){
-        return userRoleRepository.getUserRoleByName(name);
+    public ShopUserRole getShopUserRoleByName(String name){
+        return userRoleRepository.getByName(name);
     }
     @Cacheable(cacheNames = "shopUserRoleByName", key = "#name")
     @Override
-    public boolean isUserRoleExist(String name){
-        return userRoleRepository.existsUserRoleByName(name);
+    public boolean isShopUserRoleExist(String name){
+        return userRoleRepository.existsByName(name);
     }
     @Override
     @CachePut(cacheNames = "shopUserRoleByName", key = "#result.name")

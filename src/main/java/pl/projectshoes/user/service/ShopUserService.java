@@ -13,4 +13,6 @@ public interface ShopUserService {
     ShopUser createShopUser(ShopUserRegisterRequest shopUserRegisterRequest, ShopUserRole defaultRole);
 
     List<ShopUser> getAllShopUsers();
+
+    boolean isShopUserExist(String email);
 }

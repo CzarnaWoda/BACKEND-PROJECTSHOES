@@ -9,9 +9,9 @@ import pl.projectshoes.user.model.ShopUserRole;
 public interface UserRoleRepository extends JpaRepository<ShopUserRole,Long> {
 
 
-    ShopUserRole getUserRoleByName(String userRoleName);
+    ShopUserRole getByName(String userRoleName);
 
-    boolean existsUserRoleByName(String userRoleName);
+    boolean existsByName(String userRoleName);
     //ADMIN USER
 
     //TODO change methods name

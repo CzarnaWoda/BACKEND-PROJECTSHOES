@@ -67,7 +67,7 @@ public class ShopUserController {
                     .reason(bindingResult.getAllErrors().get(0).getDefaultMessage())
                     .build());
         }
-        if(shopUserService.getShopUserByEmail(shopUserRegisterRequest.email()).isPresent()){
+        if(shopUserService.isShopUserExist(shopUserRegisterRequest.email())){
             return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
                     .timeStamp(now().toString())
                     .status(BAD_REQUEST)
@@ -76,7 +76,7 @@ public class ShopUserController {
                     .data(Map.of("Request",shopUserRegisterRequest))
                     .build());
         }else{
-            shopUserService.createShopUser(shopUserRegisterRequest, shopUserRoleService.getUserRoleByName("ROLE_USER"));
+            shopUserService.createShopUser(shopUserRegisterRequest, shopUserRoleService.getShopUserRoleByName("ROLE_USER"));
             return ResponseEntity.status(CREATED).body(HttpResponse.builder()
                     .timeStamp(now().toString())
                     .status(CREATED)

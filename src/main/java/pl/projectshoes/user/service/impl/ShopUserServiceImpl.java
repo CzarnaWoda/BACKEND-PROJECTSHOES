@@ -26,7 +26,7 @@ class ShopUserServiceImpl implements ShopUserService {
     @Override
     @Cacheable(cacheNames = "shopUserByEmail", key = "#email")
     public Optional<ShopUser> getShopUserByEmail(String email){
-        return shopUserRepository.getShopUserByEmail(email);
+        return shopUserRepository.getByEmail(email);
     }
     @Override
     @CachePut(cacheNames = "shopUserByEmail",key = "#result.email")
@@ -37,5 +37,11 @@ class ShopUserServiceImpl implements ShopUserService {
     @Cacheable(cacheNames = "shopUsers")
     public List<ShopUser> getAllShopUsers(){
         return shopUserRepository.findAll();
+    }
+
+    @Override
+    @Cacheable(cacheNames = "shopUserByEmail", key = "#email")
+    public boolean isShopUserExist(String email) {
+        return shopUserRepository.existsByEmail(email);
     }
 }
