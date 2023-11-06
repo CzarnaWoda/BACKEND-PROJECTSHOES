@@ -1,4 +1,4 @@
-package pl.projectshoes.user.service;
+package pl.projectshoes.user.service.impl;
 
 
 import lombok.RequiredArgsConstructor;
@@ -6,10 +6,13 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pl.projectshoes.user.model.ShopUser;
+import pl.projectshoes.user.model.ShopUserRole;
 import pl.projectshoes.user.repository.ShopUserRepository;
 import pl.projectshoes.user.requests.ShopUserRegisterRequest;
+import pl.projectshoes.user.service.ShopUserService;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -34,8 +37,8 @@ class ShopUserServiceImpl implements ShopUserService {
     }
     @Override
     @CachePut(cacheNames = "shopUserByEmail",key = "#shopUserRegisterRequest.email()")
-    public void createShopUser(ShopUserRegisterRequest shopUserRegisterRequest){
-        shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now(), Set.of()));
+    public void createShopUser(ShopUserRegisterRequest shopUserRegisterRequest, ShopUserRole defaultRole){
+        shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now(), Set.of(defaultRole)));
     }
     @Override
     @Cacheable(cacheNames = "shopUsers")

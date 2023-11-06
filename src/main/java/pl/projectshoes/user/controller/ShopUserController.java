@@ -15,6 +15,7 @@ import pl.projectshoes.user.dto.ShopUserDTO;
 import pl.projectshoes.user.dto.ShopUserDTOMapper;
 import pl.projectshoes.user.requests.ShopUserLoginRequest;
 import pl.projectshoes.user.requests.ShopUserRegisterRequest;
+import pl.projectshoes.user.service.ShopUserRoleService;
 import pl.projectshoes.user.service.ShopUserService;
 import pl.projectshoes.utils.HttpResponse;
 
@@ -33,6 +34,7 @@ public class ShopUserController {
     private final AccountAuthenticationProvider authenticationProvider;
     private final TokenService tokenService;
     private final ShopUserDTOMapper shopUserDTOMapper;
+    private final ShopUserRoleService shopUserRoleService;
 
 
     @GetMapping("/{email}")
@@ -54,7 +56,6 @@ public class ShopUserController {
                     .data(Map.of("email",email))
                     .build());
         }
-
     }
     @PostMapping("/register")
     public ResponseEntity<HttpResponse> createShopUser(@RequestBody @Valid ShopUserRegisterRequest shopUserRegisterRequest, BindingResult bindingResult){
@@ -75,7 +76,7 @@ public class ShopUserController {
                     .data(Map.of("Request",shopUserRegisterRequest))
                     .build());
         }else{
-            shopUserService.createShopUser(shopUserRegisterRequest);
+            shopUserService.createShopUser(shopUserRegisterRequest, shopUserRoleService.getUserRoleByName("USER"));
             return ResponseEntity.status(CREATED).body(HttpResponse.builder()
                     .timeStamp(now().toString())
                     .status(CREATED)

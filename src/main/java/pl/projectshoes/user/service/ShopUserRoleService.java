@@ -1,23 +1,10 @@
 package pl.projectshoes.user.service;
 
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import pl.projectshoes.user.model.ShopUserRole;
-import pl.projectshoes.user.repository.UserRoleRepository;
 
-@Service
-@RequiredArgsConstructor
-public class ShopUserRoleService {
+public interface ShopUserRoleService {
 
-    private final UserRoleRepository userRoleRepository;
+    ShopUserRole getUserRoleByName(String name);
 
-
-    public ShopUserRole getUserRoleByName(String name){
-        return userRoleRepository.getUserRoleByName(name);
-    }
-
-    boolean isUserRoleExist(String name){
-        return userRoleRepository.existsUserRoleByName(name);
-    }
+    boolean isUserRoleExist(String name);
 }
