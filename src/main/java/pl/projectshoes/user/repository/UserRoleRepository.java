@@ -12,7 +12,4 @@ public interface UserRoleRepository extends JpaRepository<ShopUserRole,Long> {
     ShopUserRole getByName(String userRoleName);
 
     boolean existsByName(String userRoleName);
-    //ADMIN USER
-
-    //TODO change methods name
 }
