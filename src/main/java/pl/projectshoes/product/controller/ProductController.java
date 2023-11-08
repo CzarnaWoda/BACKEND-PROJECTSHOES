@@ -5,8 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.projectshoes.product.dto.ProductDTO;
-import pl.projectshoes.product.requests.ProductAddRequest;
+import pl.projectshoes.product.requests.ProductCreateRequest;
 import pl.projectshoes.product.service.ProductService;
+import pl.projectshoes.product.service.ProductServiceOld;
 import pl.projectshoes.utils.HttpResponse;
 
 import java.util.Map;
@@ -18,7 +19,6 @@ import static org.springframework.http.HttpStatus.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/product")
 public class ProductController {
-    //get, post, put, delete
     private final ProductService productService;
 
     @GetMapping("/all")
@@ -48,22 +48,24 @@ public class ProductController {
                             .build());
                 }
     }
-    @PostMapping("/add")
-    public ResponseEntity<HttpResponse> addProduct(@RequestBody ProductAddRequest productAddRequest, BindingResult bindingResult){
+    @PostMapping("/create")
+    public ResponseEntity<HttpResponse> createProduct(@RequestBody ProductCreateRequest productCreateRequest, BindingResult bindingResult){
+        final String productCode = productCreateRequest.productCode();
         if (bindingResult.hasErrors()){
             return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
                     .status(BAD_REQUEST)
                     .statusCode(BAD_REQUEST.value())
                     .message(bindingResult.getAllErrors().get(0).getDefaultMessage())
                     .build());
-        } else if (productService.isProductExist(productAddRequest.productCode())){
+        } else if (productService.isProductExist(productCode)){
+            System.out.println("Xopp");
             return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
                     .status(BAD_REQUEST)
                     .statusCode(BAD_REQUEST.value())
                     .message("Product with this product code already exist in repository !")
                     .build());
         } else {
-            productService.addProduct(productAddRequest);
+            productService.createProduct(productCreateRequest);
             return ResponseEntity.status(CREATED).body(HttpResponse.builder()
                     .status(CREATED)
                     .statusCode(CREATED.value())

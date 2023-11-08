@@ -57,11 +57,11 @@ class SecurityConfiguration {
         }));
         security.authorizeHttpRequests(
                         auth -> auth.requestMatchers(HttpMethod.POST, "/api/v1/user/register").permitAll()
-                                .requestMatchers("/api/v1/user/login").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/api/v1/user/login").permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/api/v1/user/login")).permitAll()
                                 .requestMatchers(HttpMethod.GET,"index").authenticated()
-                                .requestMatchers(HttpMethod.GET, "/api/v1/user/details").authenticated().
-                                requestMatchers("/**").authenticated().anyRequest().hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(new AntPathRequestMatcher("/api/v1/product/create")).permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/user/details").authenticated()
                 ).addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationManager(authenticationManagerBuilder.build())
                 .httpBasic(withDefaults())
