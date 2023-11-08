@@ -63,6 +63,7 @@ class SecurityConfiguration {
                                 .requestMatchers(new AntPathRequestMatcher("/api/v1/product/create")).permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/v1/product/all").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/v1/product/{productCode}").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/api/v1/product/delete/{productCode}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/v1/user/details").authenticated()
                 ).addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationManager(authenticationManagerBuilder.build())

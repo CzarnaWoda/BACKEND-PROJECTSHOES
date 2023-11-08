@@ -15,4 +15,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     Optional<Product> getProductByProductCode(String s);
 
     boolean existsByProductCode(String s);
+
+    void deleteByProductCode(String s);
 }

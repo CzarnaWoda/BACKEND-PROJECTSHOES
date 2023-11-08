@@ -1,5 +1,6 @@
 package pl.projectshoes.product.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -46,8 +47,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void deleteProduct(String s) {
-
+        productRepository.deleteByProductCode(s);
     }
 
 }
