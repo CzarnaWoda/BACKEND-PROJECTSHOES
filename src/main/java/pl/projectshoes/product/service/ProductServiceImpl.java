@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pl.projectshoes.product.dto.ProductDTO;
-import pl.projectshoes.product.enums.Standard;
 import pl.projectshoes.product.model.Product;
 import pl.projectshoes.product.model.Size;
 import pl.projectshoes.product.repository.ProductRepository;
@@ -26,11 +24,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<ProductDTO> mapToProductDTO(long id) {
-        return Optional.empty();
-    }
-
-    @Override
     @CachePut(cacheNames = "productByProductCode", key = "#productCode")
     public boolean isProductExist(String productCode) {
         return productRepository.existsByProductCode(productCode);
@@ -43,12 +36,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Object> getProductById(long id) {
-        return Optional.empty();
+    @Cacheable(cacheNames = "productByProductCode", key = "#productCode")
+    public Optional<Product> getProductByProductCode(String productCode) {
+        return productRepository.getProductByProductCode(productCode);
     }
 
     @Override
-    public void deleteProduct(long id) {
+    public void deleteProduct(String s) {
 
     }
 

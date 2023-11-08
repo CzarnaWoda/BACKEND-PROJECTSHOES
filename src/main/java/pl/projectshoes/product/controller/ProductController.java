@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.projectshoes.product.dto.ProductDTO;
+import pl.projectshoes.product.dto.ProductDTOMapper;
 import pl.projectshoes.product.requests.ProductCreateRequest;
 import pl.projectshoes.product.service.ProductService;
-import pl.projectshoes.product.service.ProductServiceOld;
 import pl.projectshoes.utils.HttpResponse;
 
 import java.util.Map;
@@ -20,6 +20,7 @@ import static org.springframework.http.HttpStatus.*;
 @RequestMapping("/api/v1/product")
 public class ProductController {
     private final ProductService productService;
+    private final ProductDTOMapper productDTOMapper;
 
     @GetMapping("/all")
     public ResponseEntity<HttpResponse> getAllProducts(){
@@ -30,9 +31,9 @@ public class ProductController {
                 .build());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<HttpResponse> getProductById(@PathVariable long id) {
-            final Optional<ProductDTO> productDTO = productService.mapToProductDTO(id);
+    @GetMapping("/{productCode}")
+    public ResponseEntity<HttpResponse> getProductById(@PathVariable String productCode) {
+        final Optional<ProductDTO> productDTO = productService.getProductByProductCode(productCode).map(productDTOMapper::fromProduct);
                 if(productDTO.isPresent()){
                     return ResponseEntity.status(OK).body(HttpResponse.builder()
                             .status(OK)
@@ -44,7 +45,7 @@ public class ProductController {
                             .status(NOT_FOUND)
                             .statusCode(NOT_FOUND.value())
                             .message("Product was not found in repository !")
-                            .data(Map.of("id",id))
+                            .data(Map.of("productCode",productCode))
                             .build());
                 }
     }
@@ -58,7 +59,6 @@ public class ProductController {
                     .message(bindingResult.getAllErrors().get(0).getDefaultMessage())
                     .build());
         } else if (productService.isProductExist(productCode)){
-            System.out.println("Xopp");
             return ResponseEntity.status(BAD_REQUEST).body(HttpResponse.builder()
                     .status(BAD_REQUEST)
                     .statusCode(BAD_REQUEST.value())
@@ -74,10 +74,10 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpResponse> deleteProduct(@PathVariable long id){
-        if (productService.getProductById(id).isPresent()){
-            productService.deleteProduct(id);
+    @DeleteMapping("/delete/{productCode}")
+    public ResponseEntity<HttpResponse> deleteProduct(@PathVariable String productCode){
+        if (productService.getProductByProductCode(productCode).isPresent()){
+            productService.deleteProduct(productCode);
             return ResponseEntity.status(OK).body(HttpResponse.builder()
                     .status(OK)
                     .statusCode(OK.value())
@@ -88,7 +88,7 @@ public class ProductController {
                     .status(NOT_FOUND)
                     .statusCode(NOT_FOUND.value())
                     .message("Product was not found in repository !")
-                    .data(Map.of("id",id))
+                    .data(Map.of("productCode",productCode))
                     .build());
         }
     }
