@@ -24,11 +24,19 @@ public class ProductController {
 
     @GetMapping("/all")
     public ResponseEntity<HttpResponse> getAllProducts(){
-        return ResponseEntity.status(OK).body(HttpResponse.builder()
-                .status(OK)
-                .statusCode(OK.value())
-                .data(Map.of("products", productService.getAllProducts()))
-                .build());
+        if (productService.getAllProducts().isEmpty()){
+            return ResponseEntity.status(NOT_FOUND).body(HttpResponse.builder()
+                    .status(NOT_FOUND)
+                    .statusCode(NOT_FOUND.value())
+                    .message("Products were not found in repository !")
+                    .build());
+        } else {
+            return ResponseEntity.status(OK).body(HttpResponse.builder()
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .data(Map.of("products", productService.getAllProducts()))
+                    .build());
+        }
     }
 
     @GetMapping("/{productCode}")

@@ -4,10 +4,11 @@ import pl.projectshoes.product.dto.ProductDTO;
 import pl.projectshoes.product.model.Product;
 import pl.projectshoes.product.requests.ProductCreateRequest;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProductService {
-    Object getAllProducts();
+    List<Product> getAllProducts();
 
     boolean isProductExist(String s);
 

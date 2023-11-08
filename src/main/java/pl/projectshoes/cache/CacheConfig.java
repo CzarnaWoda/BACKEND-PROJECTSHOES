@@ -21,7 +21,7 @@ class CacheConfig {
 
         cacheManager.setCaffeine(Caffeine.newBuilder()
                 .expireAfterWrite(45,TimeUnit.MINUTES));
-        cacheManager.setCacheNames(List.of("shopUserByEmail","shopUserRoleByName","productByProductCode"));
+        cacheManager.setCacheNames(List.of("shopUserByEmail","shopUserRoleByName","productByProductCode","products"));
 
         return cacheManager;
     }

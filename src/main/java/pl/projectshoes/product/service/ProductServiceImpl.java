@@ -10,6 +10,8 @@ import pl.projectshoes.product.repository.ProductRepository;
 import pl.projectshoes.product.requests.ProductCreateRequest;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +21,10 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public Object getAllProducts() {
-        return null;
+    @Cacheable(cacheNames = "products", key = "T(java.util.Objects).hash(#root.methodName)")
+    public List<Product> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        return products != null ? products : Collections.emptyList();
     }
 
     @Override
