@@ -2,6 +2,7 @@ package pl.projectshoes.product.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -48,8 +49,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public void deleteProduct(String s) {
-        productRepository.deleteByProductCode(s);
+    @CacheEvict(cacheNames = "productByProductCode", key = "#productCode")
+    public void deleteProduct(String productCode) {
+        productRepository.deleteByProductCode(productCode);
     }
 
 }
