@@ -2,8 +2,10 @@ package pl.projectshoes.user.service.impl;
 
 
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.projectshoes.user.model.ShopUser;
 import pl.projectshoes.user.model.ShopUserRole;
@@ -21,17 +23,19 @@ import java.util.Set;
 class ShopUserServiceImpl implements ShopUserService {
 
     private final ShopUserRepository shopUserRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
 
     @Override
-    @Cacheable(cacheNames = "shopUserByEmail", key = "#email")
+    //@Cacheable(cacheNames = "shopUserByEmail", key = "#email")
     public Optional<ShopUser> getShopUserByEmail(String email){
-        return shopUserRepository.getByEmail(email);
+        return shopUserRepository.findByEmail(email);
     }
     @Override
     @CachePut(cacheNames = "shopUserByEmail",key = "#result.email")
     public ShopUser createShopUser(ShopUserRegisterRequest shopUserRegisterRequest, ShopUserRole defaultRole){
-        return shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),shopUserRegisterRequest.password(),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now(), Set.of(defaultRole)));
+        return shopUserRepository.save(new ShopUser(shopUserRegisterRequest.firstName(),shopUserRegisterRequest.lastName(),shopUserRegisterRequest.email(),passwordEncoder.encode(shopUserRegisterRequest.password()),shopUserRegisterRequest.phone(),true,true,false, LocalDateTime.now(), Set.of(defaultRole)));
     }
 
     //Only for test {Jeżeli ktoś doda użytkownika/ zarejestruje sie to powinno dzięki result.size pobrać na nowo wszystkich użytkowników tylko pytanie czy jak bedzie np 10k użytkowników to czy jak bedzie 10k i 1 to nie bedzie za dużo pamięci brało dla cache więc możliwe że trzeba to zrobić coś w stylu kasowania co 2-3 minuty żeby to faktycznie miało sens optymalizacyjny}
@@ -45,5 +49,15 @@ class ShopUserServiceImpl implements ShopUserService {
     @Cacheable(cacheNames = "shopUserByEmail", key = "#email")
     public boolean isShopUserExist(String email) {
         return shopUserRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean updatePasswordByEmail(String email, String newPassword) {
+        final Optional<ShopUser> user = getShopUserByEmail(email);
+        user.ifPresent(u -> {
+            u.setPassword(passwordEncoder.encode(newPassword));
+            shopUserRepository.save(u);
+        });
+        return true;
     }
 }

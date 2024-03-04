@@ -16,9 +16,9 @@ class ShopUserRoleServiceImpl implements ShopUserRoleService {
     private final ShopUserRoleRepository shopUserRoleRepository;
 
     @Override
-    @Cacheable(cacheNames = "shopUserRoleByName", key = "#name")
+    //@Cacheable(cacheNames = "shopUserRoleByName", key = "#name")
     public ShopUserRole getShopUserRoleByName(String name){
-        return shopUserRoleRepository.getByName(name);
+        return shopUserRoleRepository.findByName(name);
     }
     @Cacheable(cacheNames = "shopUserRoleByName", key = "#name")
     @Override

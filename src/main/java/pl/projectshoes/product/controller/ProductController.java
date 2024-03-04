@@ -17,7 +17,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductService productService;
     private final ProductDTOMapper productDTOMapper;

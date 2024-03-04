@@ -12,6 +12,7 @@ import pl.projectshoes.product.repository.ProductRepository;
 import pl.projectshoes.product.requests.ProductCreateRequest;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,6 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    @Cacheable(cacheNames = "products", key = "T(java.util.Objects).hash(#root.methodName)")
     public List<Product> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products != null ? products : Collections.emptyList();
@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @CachePut(cacheNames = "productByProductCode", key = "#result.productCode")
     public Product createProduct(ProductCreateRequest productCreateRequest) {
-        return productRepository.save(new Product(productCreateRequest.category(), productCreateRequest.brand(), productCreateRequest.model(), productCreateRequest.shoeColor(), new Size(productCreateRequest.size(), productCreateRequest.standard()), productCreateRequest.price(), productCreateRequest.productCode(), productCreateRequest.quantity(), productCreateRequest.description(), productCreateRequest.image(), productCreateRequest.isAvailable(), false, true, true, productCreateRequest.isOnPromotion(), LocalDateTime.now()));
+        return productRepository.save(new Product(productCreateRequest.category(), productCreateRequest.brand(), productCreateRequest.model(), productCreateRequest.shoeColor(), productCreateRequest.size(), productCreateRequest.price(), productCreateRequest.productCode(), productCreateRequest.description(), productCreateRequest.image(), productCreateRequest.isAvailable(), false, true, true, productCreateRequest.isOnPromotion(), LocalDateTime.now()));
     }
 
     @Override

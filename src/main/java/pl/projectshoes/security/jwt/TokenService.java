@@ -20,14 +20,14 @@ public class TokenService {
 
     private final JwtEncoder jwtEncoder;
 
-    public String generateToken(Authentication authentication){
+    public String generateToken(Authentication authentication, boolean longToken){
 
         String scope = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now())
-                .expiresAt(now().plus(60*5, ChronoUnit.SECONDS))
+                .expiresAt(now().plus(longToken ? 2*60*60 : 60*5, ChronoUnit.SECONDS))
                 .subject(authentication.getName())
                 .claim("roles", List.of(scope))
                 .build();

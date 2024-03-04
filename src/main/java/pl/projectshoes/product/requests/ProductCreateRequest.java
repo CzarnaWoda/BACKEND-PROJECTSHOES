@@ -6,16 +6,16 @@ import pl.projectshoes.product.enums.ShoeColor;
 import pl.projectshoes.product.enums.Standard;
 import pl.projectshoes.product.model.Size;
 
+import java.util.List;
+
 public record ProductCreateRequest(
         Category category,
         Brand brand,
         String model,
         ShoeColor shoeColor,
-        int size,
-        Standard standard,
+        List<Size> size,
         double price,
         String productCode,
-        int quantity,
         String description,
         String image,
         boolean isAvailable,

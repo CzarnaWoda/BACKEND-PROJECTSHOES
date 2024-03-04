@@ -8,10 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@NoArgsConstructor
 @Getter
-@Setter
+@Entity
 public class ShopUserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,4 +22,9 @@ public class ShopUserRole {
         this.name = name;
         this.permissions = permissions;
     }
+
+    public ShopUserRole() {
+
+    }
+
 }

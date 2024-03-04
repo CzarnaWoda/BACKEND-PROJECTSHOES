@@ -9,7 +9,7 @@ import pl.projectshoes.user.model.ShopUserRole;
 public interface ShopUserRoleRepository extends JpaRepository<ShopUserRole,Long> {
 
 
-    ShopUserRole getByName(String userRoleName);
+    ShopUserRole findByName(String name);
 
     boolean existsByName(String userRoleName);
 }

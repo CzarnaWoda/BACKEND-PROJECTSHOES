@@ -11,5 +11,9 @@ public record ShopUserLoginRequest (
         @Size(min = 6,max = 48, message = "Adres e-mail musi składać się z 6-48 znaków")
         String email,
         @NotBlank(message = "Nie podałeś hasła")
-        String password) {
+        String password,
+        @NotBlank(message = "Remember value not valid")
+        boolean remember
+        )
+{
 }

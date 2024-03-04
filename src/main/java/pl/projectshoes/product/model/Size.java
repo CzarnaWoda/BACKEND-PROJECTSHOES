@@ -10,11 +10,14 @@ import pl.projectshoes.product.enums.Standard;
 @NoArgsConstructor
 @Data
 public class Size {
+
     private double size;
     private Standard standard;
+    private int quantity;
 
-    public Size(double size, Standard standard) {
+    public Size(double size, Standard standard, int quantity) {
         this.size = size;
         this.standard = standard;
+        this.quantity = quantity;
     }
 }

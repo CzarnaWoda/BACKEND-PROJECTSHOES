@@ -15,4 +15,7 @@ public interface ShopUserService {
     List<ShopUser> getAllShopUsers();
 
     boolean isShopUserExist(String email);
+
+
+    boolean updatePasswordByEmail(String email, String newPassword);
 }

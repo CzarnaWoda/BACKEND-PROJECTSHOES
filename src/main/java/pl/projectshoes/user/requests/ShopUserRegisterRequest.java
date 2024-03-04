@@ -16,7 +16,7 @@ public record ShopUserRegisterRequest(
         @Email(message = "Nie podano poprawnego email'a")
         String email,
         @NotBlank(message = "Nie podano poprawnego hasła")
-        @Size(min=10,max=128)
+        @Size(min=10,max=128,message = "Haslo sklada musi skladac sie z minimum 10 znaków, maksimum 128 znaków")
         String password,
         @NotBlank(message = "Nie podano poprawnego numeru telefonu")
         @Size(min = 9, max = 9, message = "Numer telefonu składa sie z 9 cyfr")
