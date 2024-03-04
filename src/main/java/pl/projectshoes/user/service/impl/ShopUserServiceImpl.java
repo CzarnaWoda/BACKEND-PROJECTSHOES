@@ -2,7 +2,6 @@ package pl.projectshoes.user.service.impl;
 
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;

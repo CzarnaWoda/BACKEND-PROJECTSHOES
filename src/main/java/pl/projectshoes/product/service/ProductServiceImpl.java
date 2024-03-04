@@ -7,12 +7,10 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pl.projectshoes.product.model.Product;
-import pl.projectshoes.product.model.Size;
 import pl.projectshoes.product.repository.ProductRepository;
 import pl.projectshoes.product.requests.ProductCreateRequest;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

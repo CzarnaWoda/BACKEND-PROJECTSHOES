@@ -11,7 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.projectshoes.security.jwt.JwtAuthenticationFilter;
 import pl.projectshoes.security.jwt.TokenService;
 import pl.projectshoes.security.provider.AccountAuthenticationProvider;
 import pl.projectshoes.user.dto.ShopUserDTO;
@@ -24,7 +23,6 @@ import pl.projectshoes.user.service.ShopUserRoleService;
 import pl.projectshoes.user.service.ShopUserService;
 import pl.projectshoes.utils.HttpResponse;
 
-import javax.swing.text.html.Option;
 import java.util.Map;
 import java.util.Optional;
 
