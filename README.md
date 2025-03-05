@@ -130,6 +130,4 @@ Aplikacja wykorzystuje **Spring Cache** do przechowywania produktów w pamięci 
 
 ---
 
-## Autor
-**ProjectShoes Team**
 
